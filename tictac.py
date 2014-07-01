@@ -9,19 +9,19 @@ def init():
 
 def player1():
 	(x,y)=tuple(int(x.strip()) for x in raw_input("Player 1 (X):").split(','))
-	if matrix[x][y]!= ' ':
+	if matrix[x-1][y-1]!= ' ':
 		print "Invalid move, try again!.\n"
 		player1()  
 	else:
-		matrix[x][y] = 'X'
+		matrix[x-1][y-1] = 'X'
 
 def player2():
 	(x,y)=tuple(int(x.strip()) for x in raw_input("Player 2 (O):").split(','))
-	if matrix[x][y]!= ' ':
+	if matrix[x-1][y-1]!= ' ':
 		print "Invalid move, try again!.\n"
 		player2()  
 	else:
-		matrix[x][y] = 'O'
+		matrix[x-1][y-1] = 'O'
 def display():
 	for t in xrange(3):
 		print " %c | %c | %c " %(matrix[t][0],matrix[t][1], matrix [t][2])
@@ -45,24 +45,26 @@ def check():
 		   return matrix[0][2]
 
 	return ' '
+def main():
+	print "Tic Tac Toe.\n"
+	done =  ' '
+	init()
+	while done==' ':
+		display()
+		player1()
+		display()
+		done = check(); 
+		if done!= ' ':
+		 break
+		player2()
+		done = check()
+	if done=='X':
+		print "Player 1 won!\n"
+	else:
+		print "Player 2 won!\n"
 
-print "Tic Tac Toe.\n"
-done =  ' '
-init()
-while done==' ':
-	display()
-	player1()
-	display()
-	done = check(); 
-	if done!= ' ':
-	 break
-	player2()
-	done = check()
-if done=='X':
-	print "Player 1 won!\n"
-else:
-	print "Player 2 won!\n"
-display()
+if __name__ == "__main__":
+	main()
 
 	
 	
